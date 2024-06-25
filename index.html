@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./index.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="pt-[30px]">
+        <div class=" pl-[30px] pr-[30px] flex justify-between">
+            <h3 class="text-[30px] font-semibold text-gray-900 dark:text-white">
+                Exam results
+            </h3>
+            <button id="add-student"
+                class="text-white inline-flex items-center bg-blue-700   focus:outline-none font-medium rounded-[5px] text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 ">
+                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                Add new student
+            </button>
+        </div>
+        <div class="box pl-[30px] flex">
+            <div id="crud-modal" class="justify-center items-center">
+                <!-- Modal content -->
+                <div>
+                    <div class="items-center justify-between p-4 md:p-5  dark:border-gray-600">
+                        <h3 class=" pt-[30px] text-[28px] font-semibold text-gray-900 dark:text-white">
+                            Filter
+                        </h3>
+                    </div>
+                    <!-- Modal body -->
+                    <form class="p-4 md:p-5 mt-[-20px]">
+                        <div class="grid gap-4 mb-4 grid-cols-2">
+                            <div class="col-span-2">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                                <input type="text" name="name"
+                                    class=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Falonchi" required="">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mark</label>
+                                <div class="inline-flex  gap-[13px] ">
+                                    <input type="text"
+                                        class=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-primary-600  p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="From" required="">
+                                    <input type="text"
+                                        class=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-primary-600  p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="To" required="">
+
+
+                                </div>
+                            </div>
+                            <div class="col-span-2">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <select id="category"
+                                    class=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[5px] focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option selected="">Name</option>
+                                    <option>Mark: to lowest</option>
+                                    <option>Mark: to highest</option>
+                                    <option>Marked date</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[5px] text-sm px-[172px] py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+                            Filter
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="pt-[53px]">
+                <div class="flex justify-between items-center  pl-[30px] pr-[30px]" id="list">
+                    <p class="text-[28px] font-semibold">Student list</p>
+                    <p class="font-regular text-right text-gray-500">Count:5</p>
+                </div>
+                <p class="pt-[30px] text-right pr-[30px] pb-[20px] font-regular text-gray-500" id="p">Average mark:65%
+                </p>
+                <table class=" justify-around font-bold  text-sm  text-left rtl:text-right text-gray-500">
+                    <thead class="text-box  text-xs text-gray-900 uppercase   bg-gray-50">
+                        <tr class="max-[700px]:w-[4px] max-[700px]:text-[10px]">
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1 ">Id</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1">Name&Lastname</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1 ">Marked Date</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1 ">Mark</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1">Status</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1">Edit</th>
+                            <th scope="col" class="px-10 py-3 max-[700px]:px-1">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="fixed hidden inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
+                id="modal">
+                <!-- Modal -->
+                <div class="bg-white rounded-lg shadow-lg p-8 w-96 relative">
+                    <button class="absolute top-0 right-0 text-[35px] mt-4 mr-7 text-gray-500 hover:text-gray-800"
+                        id="close-btn">
+                        &times;
+                    </button>
+                    <h2 class="text-2xl font-semibold mb-4">Add student</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label class="block text-gray-700">Name</label>
+                            <input type="text" id="name"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700">Lastname</label>
+                            <input type="text" id="lastname"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700">Mark</label>
+                            <input type="number" id="mark"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <button type="submit" id="new-student"
+                            class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700">Add
+                            student</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
